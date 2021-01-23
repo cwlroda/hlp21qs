@@ -7,7 +7,34 @@
 /// answer to Tick1
 // the header given here is correct.
 let polarToCartesianApprox (r,theta) n = 
-    failwithf "Tick1 not yet implemented" // replace this line with your top-level implementation
+    let signedTerm s k t =
+        let fact i =
+            if i = 0 then 1.0
+            else List.reduce (*) [1.0..float i]
+        
+        let term =
+            (t ** (float k)) / fact k
+        
+        let sign = 
+            (float (s % 2) * -2.0) + 1.0
+        
+        (sign * term)
+    
+    let sumTerms l t = 
+        l
+        |> List.mapi (fun i v -> signedTerm i v t)
+        |> List.reduce (+)
+
+    let sin t =
+        if n > 0 then sumTerms [1..2..n] t
+        else 0.0
+    
+    let cos t = sumTerms [0..2..n] t
+    
+    let x = r * cos theta
+    let y = r * sin theta
+    
+    (x, y)
 
 
 //--------------------testbench code - DO NOT CHANGE-----------------------------//
