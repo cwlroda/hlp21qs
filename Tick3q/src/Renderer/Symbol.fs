@@ -70,7 +70,7 @@ let busDecoderView (comp: Component) =
     match comp.Type with
     | BusDecoder(w, a, n) ->
         let outputLabels =
-            let indexList = [0..n-1-a]
+            let indexList = [0..n-1]
             let spacing = (w * 18) / indexList.Length
 
             indexList
@@ -108,7 +108,7 @@ let busDecoderView (comp: Component) =
                     ]
                 ] ([
                     tspan [
-                        X 26.; 
+                        X 26.;
                         Y 8.; 
                     ] [str <| sprintf "Bus Decode"]
 
