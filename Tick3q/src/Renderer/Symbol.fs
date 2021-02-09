@@ -33,7 +33,7 @@ let makeBusDecoderComponent (pos:XYPos) (w: int) (a: int) (n: int) =
         X = int pos.X
         Y = int pos.Y
         W = 50
-        H = w * 25
+        H = n * 10
         Type = BusDecoder(w, a, n)
     }
 
@@ -71,13 +71,13 @@ let busDecoderView (comp: Component) =
     | BusDecoder(w, a, n) ->
         let outputLabels =
             let indexList = [0..n-1]
-            let spacing = (w * 18) / indexList.Length
+            let spacing = (n * 6) / indexList.Length
 
             indexList
             |> List.map (fun index -> 
                 tspan [
                     X 43.;
-                    Y ((w * 7) + (index * spacing));
+                    Y (int(fH / 3.) + (index * spacing));
                 ] [str <| sprintf "%i" (index + a)]
             )
         
